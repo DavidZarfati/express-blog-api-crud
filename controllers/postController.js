@@ -1,11 +1,16 @@
 import { posts } from "../data.js"
 
 function index(req, res) {
-    const risposta = {
-        count: posts.length,
-        results: posts
+    let filteredPosts = posts;
+    const tag = req.query.tag;
+    if (tag) {
+        filteredPosts = posts.filter(post => Array.isArray(post.tags) && post.tags.includes(tag));
     }
-    res.json(risposta)
+    const risposta = {
+        count: filteredPosts.length,
+        results: filteredPosts
+    };
+    res.json(risposta);
 }
 function show(req, res) {
     const id = parseInt(req.params.id);
