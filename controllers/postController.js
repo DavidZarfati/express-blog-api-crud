@@ -9,7 +9,21 @@ function index(req, res) {
 }
 function show(req, res) {
     const id = parseInt(req.params.id);
+    if (isNaN(id) || id < 0) {
+        return res.status(204).json({
+            errore: "IdNonValido",
+            numero_errore: 204,
+            descrizione: "L'id fornito non è valido."
+        });
+    }
     const resp = posts.find(game => game.id === id);
+    if (!resp) {
+        return res.status(204).json({
+            errore: "PostNonTrovato",
+            numero_errore: 204,
+            descrizione: "Nessun post trovato con l'id fornito."
+        });
+    }
     res.json(resp);
 }
 
@@ -28,7 +42,22 @@ function modify(req, res) {
 }
 
 function destroy(req, res) {
-    const id = req.params.id;
+    const id = parseInt(req.params.id);
+    if (isNaN(id) || id < 0) {
+        return res.status(204).json({
+            errore: "IdNonValido",
+            numero_errore: 204,
+            descrizione: "L'id fornito non è valido."
+        });
+    }
+    const post = posts.find(post => post.id === id);
+    if (!post) {
+        return res.status(204).json({
+            errore: "PostNonTrovato",
+            numero_errore: 204,
+            descrizione: "Nessun post trovato con l'id fornito."
+        });
+    }
     res.send("cancella post n." + id);
 }
 
