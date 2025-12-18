@@ -1,46 +1,24 @@
-import express from "express"
-import { posts } from "../data.js"
+import express from "express";
+import { index, show, store, update, modify, destroy } from "../controllers/postController.js";
 
 const router = express.Router();
 
-//INDEX
-router.get("/", (req, res) => {
-    const risposta = {
-        count: posts.length,
-        results: posts
-    }
-    res.json(risposta)
-})
+// INDEX
+router.get("/", index);
 
-//SHOW
-router.get("/:id", (req, res) => {
-    const id = parseInt(req.params.id);
-    const resp = posts.find(game => game.id === id);
-    res.json(resp)
-})
+// SHOW
+router.get("/:id", show);
 
-//STORE
-router.post("/", (req, res) => {
-    res.send("creo nuovo post")
-})
+// STORE
+router.post("/", store);
 
-//UPDATE
-router.put("/:id", (req, res) => {
-    const id = req.params.id;
-    res.send("aggiorna post n." + id)
-})
+// UPDATE
+router.put("/:id", update);
 
-//MODIFY
-router.patch("/:id", (req, res) => {
-    const id = req.params.id;
-    res.send("aggiorna parzialmente post n." + id)
-})
+// MODIFY
+router.patch("/:id", modify);
 
-//DESTROY
-router.delete("/:id", (req, res) => {
-    const id = req.params.id;
-    res.send("cancella post n." + id)
-})
+// DESTROY
+router.delete("/:id", destroy);
 
-
-export default router; 
+export default router;
