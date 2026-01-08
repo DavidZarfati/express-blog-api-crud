@@ -13,6 +13,7 @@ function index(req, res) {
     res.json(risposta);
 }
 function show(req, res) {
+
     const id = parseInt(req.params.id);
     if (isNaN(id) || id < 0) {
         return res.status(404).json({
