@@ -73,3 +73,79 @@ Controllare la correttezza di dati nello store e update, inviando nel caso error
 Provate ad aggiungere filtri multipli (2 - 3 filtri) nella rotta index
 
 Buon Lavoro e buon divertimento
+
+# Brief progetto: **Booking API (Express)**
+
+## Contesto
+
+State costruendo una piccola API per gestire le **prenotazioni** di una struttura (es. affittacamere / B&B).
+Non useremo database: i dati stanno **in memoria** (array/oggetti).
+
+L’obiettivo della lezione è:
+
+1. **Progettare** l’API (documentazione chiara)
+2. **Implementare** l’API in Express rispettando la doc
+
+---
+
+## Regole del gioco
+
+- Lavorate in **gruppi da 3–4**
+- Prima fase: **solo documentazione** (niente codice)
+- Seconda fase: implementazione Express
+- Risposte sempre in **JSON**
+- Validazioni minime e errori coerenti
+- Le Date devono essere salvate in formato `YYYY-MM-DD`
+
+---
+
+# Fase 1 — Documentazione (30–40 min)
+
+Create una mini-doc in Markdown (anche 1 file `API.md`) con:
+
+### 1) Risorse e modello dati
+
+Definite il modello “Booking”:
+
+Campi minimi consigliati:
+
+- `id` (string o number)
+- `guestName` (string)
+- `from` (YYYY-MM-DD)
+- `to` (YYYY-MM-DD)
+- `guests` (number)
+- `status` (es. `"confirmed"` / `"cancelled"`)
+
+### 2) Endpoint richiesti
+
+Per ogni endpoint scrivete:
+
+- Metodo + path
+- Query/body params
+- Esempio request
+- Esempio response
+- Errori possibili (status code + messaggio)
+
+### 3) Regole di validazione
+
+Scrivete chiaramente le regole (esempi):
+
+- `from` e `to` sono obbligatorie
+- `from` < `to`
+- `guests` >= 1
+- (opzionale) nessuna sovrapposizione con prenotazioni confermate
+
+### 4) Convenzioni errori
+
+Scegliete un formato unico, ad esempio:
+
+```json
+{ "error": { "code": "VALIDATION_ERROR", "message": "from is required" } }
+```
+
+Olga Demina — 11:13
+# 📘 API Documentation
+
+## Endpoint: `GET /bookings`
+
+### Descrizione
